@@ -6,6 +6,8 @@ import java.awt.event.*;
 import java.io.IOException; 
 import java.io.InputStream;
 import javax.imageio.ImageIO;
+import java.awt.Font;
+import java.awt.FontFormatException;
 
 
 
@@ -25,7 +27,9 @@ public class MenuGame extends JFrame {
 
 
         try (InputStream inputStream = getClass().getResourceAsStream("./Game/Jeux_Java/file.txt/Jersey_10/Jersey10-Regular.ttf")) {
-            Font jerseyFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+
+            // Thread.currentThread().getContextClassLoader().getResourceAsStream
+             Font jerseyFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             // Appliquer la police au titre de la fenêtre
             setTitleFont(jerseyFont.deriveFont(24f)); // Modifier la taille de la police selon vos préférences
         } catch (FontFormatException | IOException e) {
@@ -34,8 +38,6 @@ public class MenuGame extends JFrame {
         }
 
         setTitle("Multi_Game");
-
-
 
         
         setSize(600, 400);
