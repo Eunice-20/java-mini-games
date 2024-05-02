@@ -1,19 +1,27 @@
 package Jeux_Java;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Arrays;
+import java.util.TimerTask;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 public class memory extends JPanel implements ActionListener 
 {
-   // public static Image Bg;
+   // public static Image Bg; 
+
+   public static  long previousTime;
 
     public static JPanel panel = new JPanel();
 
     public static JButton card , card2 , card3 , card4 , card5 , card6 , card7 , card8 , card9 , card10 , card11 , card12 , card13 , card14 , card15 , card16 , card17 , card18, cardOrigin;
 
-    public static JFrame frame = new JFrame();
+    public static JButton restart , exit; 
+
+    public static JFrame frame = new JFrame("Memory");
 
     public static int cardt;
 
@@ -25,6 +33,8 @@ public class memory extends JPanel implements ActionListener
 
     public static String kj;
 
+    public static JLabel label;
+
     public static ImageIcon gp = new ImageIcon("./Game/asset/Memory/inscryber-card.png");
 
     public static int cp;
@@ -32,9 +42,20 @@ public class memory extends JPanel implements ActionListener
     //public static ??? time;
     
     public static int carda;
-    
-    public static void main(String[] args)
+
+                public static void main(String[] args) {
+                    SwingUtilities.invokeLater(() -> memory());
+                }
+
+    public static void memory()
     {
+        JLabel background = new JLabel(new ImageIcon(("./Game/asset/Memory/tapiscart.jpg")));
+        frame.setContentPane(background);
+        label = new JLabel();
+        label.setText("Trouve les carte paire.");
+        label.setBounds(450, 100, 1000, 100);
+        label.setFont(new Font("", Font.BOLD, 50));
+frame.add(label);
     JButton [] tabname = {
         card = new JButton("./Game/asset/Memory/1.png"), card2 = new JButton("./Game/asset/Memory/1.png"),card3 = new JButton("./Game/asset/Memory/2.png"),
         card4 = new JButton("./Game/asset/Memory/2.png"), card5 = new JButton("./Game/asset/Memory/3.png"),card6 = new JButton("./Game/asset/Memory/3.png"),
@@ -64,22 +85,28 @@ public class memory extends JPanel implements ActionListener
         x += 245;
         ra -= 1;
     }
-    JFrame memoryFrame = new JFrame();
-    memoryFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-    memoryFrame.setVisible(false);
+        //label.setText("Devine a quelle nombre je pense.");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
         frame.setLayout(null);
         Image img =Toolkit.getDefaultToolkit().getImage("./Game/asset/tapis.jpg");
         frame.setIconImage(img);
-       
+        previousTime = System.currentTimeMillis();
     }
         
 
 
 	public void actionPerformed(ActionEvent e) 
     {
-        if(cardt == 0)
+        if(((JButton)e.getSource()) == exit){
+            System.exit(0);
+        }
+        if(((JButton)e.getSource()) == restart){
+        memory();
+        }
+        label.setText("");
+        if(cardt == 0 && ((JButton)e.getSource()) != restart)
         {
             h = ((JButton)e.getSource());
             k = ((JButton)e.getSource()).getText();
@@ -108,15 +135,15 @@ public class memory extends JPanel implements ActionListener
                 hj.setIcon(gp);
                 h.setIcon(gp);
                 cardt = 0;
-                cp += 2; 
+                cp += 1; 
+            if(carda == 18)
+    {
+        victory();
+    } 
         }
     });
     timer.setRepeats(false);
     timer.start();
-    if(carda == 18)
-    {
-    System.out.print("Work in progress :" + cp);
-    } 
     }
 
 
@@ -136,5 +163,47 @@ public class memory extends JPanel implements ActionListener
             }  
             return anotherArray;
 	    }
+public static void menumemo(){
+        JLabel a = new JLabel(new ImageIcon(("./Game/asset/Memory/menu.png")));
+        frame.setContentPane(a);
+}
 
+public static void victory(){
+    long currentTime = System.currentTimeMillis();
+    double elapsedTime = (currentTime - previousTime) / 1000.0;
+    label.setText("Temps : " + elapsedTime + "s");
+   JLabel label2 = new JLabel();
+    label2.setText("Nombre de coup :" + cp);
+    label2.setBounds(450, 200, 1000, 100);
+    label2.setFont(new Font("", Font.BOLD, 30));
+frame.add(label2);
+int scoreT ,scoreC, score;
+scoreC = 40 - (cp - 9);
+if(scoreC <= 0){scoreC = 0;}
+scoreT = 60 - ((int)elapsedTime/3);
+if(scoreT <= 0){scoreT = 0;}
+score = scoreT + scoreC;
+JLabel label3 = new JLabel();
+    label3.setText("Ton score est de :" + score + " / 100");
+    label3.setBounds(450, 250, 1000, 100);
+    label3.setFont(new Font("", Font.BOLD, 30));
+frame.add(label3);
+    previousTime = currentTime;
+    exit = new JButton("exit");
+    restart = new JButton("restart");
+    exit.setBounds(800, 350, 180, 100);
+        exit.addActionListener(new memory());
+        frame.add(exit);
+        restart.setBounds(500, 350, 180, 100);
+        restart.addActionListener(new memory());
+        frame.add(restart);
+        carda = 0;
+        cp = 0;
+}
+       /*@Override
+        public void actionPerformed(ActionEvent e) {
+           // get reference to bound component
+           KeyBindingPanel panel = (KeyBindingPanel) e.getSource();
+           panel.setOvalColor(color);
+        }*/
 }
