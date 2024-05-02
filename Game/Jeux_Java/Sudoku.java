@@ -138,11 +138,9 @@ public class Sudoku extends JFrame {
         return solution;
     }
 
-    // Function to check if the current sudoku configuration is valid
     private boolean isValidSetd() {
         int[][] currentConfiguration = new int[9][9];
 
-        // Reading the current configuration from the text fields
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 String text = sudokuCells[i][j].getText();
@@ -154,7 +152,6 @@ public class Sudoku extends JFrame {
             }
         }
 
-        // Checking rows, columns, and 3x3 squares for duplicates
         for (int i = 0; i < 9; i++) {
             if (!isValidSetdSet(currentConfiguration[i]) || !isValidSetdSet(getColumn(currentConfiguration, i)) ||
                     !isValidSetdSet(getSquare(currentConfiguration, i))) {
@@ -165,7 +162,6 @@ public class Sudoku extends JFrame {
         return true;
     }
 
-    // Function to check if a set of 9 numbers is valid (no duplicates)
     private boolean isValidSetdSet(int[] set) {
         boolean[] seen = new boolean[10];
         for (int num : set) {
@@ -177,7 +173,6 @@ public class Sudoku extends JFrame {
         return true;
     }
 
-    // Function to get a column from the sudoku grid
     private int[] getColumn(int[][] grid, int col) {
         int[] column = new int[9];
         for (int i = 0; i < 9; i++) {
@@ -186,7 +181,6 @@ public class Sudoku extends JFrame {
         return column;
     }
 
-    // Function to get a 3x3 square from the sudoku grid
     private int[] getSquare(int[][] grid, int square) {
         int[] squareArray = new int[9];
         int rowOffset = (square / 3) * 3;
@@ -200,11 +194,9 @@ public class Sudoku extends JFrame {
         return squareArray;
     }
 
-    // Function to get the current configuration of the Sudoku grid
     private int[][] getCurrentConfiguration() {
         int[][] currentConfiguration = new int[9][9];
 
-        // Reading the current configuration from the text fields
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 String text = sudokuCells[i][j].getText();

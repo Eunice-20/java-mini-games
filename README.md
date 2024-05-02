@@ -15,6 +15,12 @@ Tous ces jeux  utilisent une base de données MySQL pour stocker les données, y
 
  ### Jeux Realiser 
 
+ <!-- definit le jeux
+
+  le but jeux 
+
+comment  jouer  -->
+
 
 #### Jeux du + ou - 
 
