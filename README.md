@@ -64,7 +64,7 @@ Les étapes pour accéder projet  :
 Clonez ce dépôt github sur votre machine:
 
 ```
-https://github.com/Eunice-20/Eunice-20-java_minigames.git
+https://github.com/Eunice-20/java-mini-games.git
 ```
 
 Démarrage du menu des jeux 
@@ -75,6 +75,6 @@ Démarrage du menu des jeux
 
  ## Remeciment
 
- Ce projet a été d'une grande aide pour (...............................................) la création de plusieur mini jeux . Ravi d'y avoir participé, Merci d'avoir consacré votre temps et votre attention à la conception du projet.
+ Ce projet a été d'une grande aide pour """""""" la création de plusieur mini jeux . Ravi d'y avoir participé, Merci d'avoir consacré votre temps et votre attention à la conception du projet.
 
 
