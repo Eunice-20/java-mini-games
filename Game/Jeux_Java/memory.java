@@ -174,18 +174,18 @@ public static void victory(){
     label.setText("Temps : " + elapsedTime + "s");
    JLabel label2 = new JLabel();
     label2.setText("Nombre de coup :" + cp);
-    label2.setBounds(450, 200, 1000, 100);
-    label2.setFont(new Font("", Font.BOLD, 30));
+    label2.setBounds(450, 180, 1000, 100);
+    label2.setFont(new Font("", Font.BOLD, 40));
 frame.add(label2);
 int scoreT ,scoreC, score;
-scoreC = 40 - (cp - 9);
+scoreC = 50 - (cp - 9);
 if(scoreC <= 0){scoreC = 0;}
-scoreT = 60 - ((int)elapsedTime/3);
+scoreT = 50 - ((int)elapsedTime/2);
 if(scoreT <= 0){scoreT = 0;}
 score = scoreT + scoreC;
 JLabel label3 = new JLabel();
-    label3.setText("Ton score est de :" + score + " / 100");
-    label3.setBounds(450, 250, 1000, 100);
+    label3.setText("Ton score est de :" + score);
+    label3.setBounds(450, 230, 1000, 100);
     label3.setFont(new Font("", Font.BOLD, 30));
 frame.add(label3);
     previousTime = currentTime;
