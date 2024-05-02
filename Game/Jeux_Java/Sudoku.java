@@ -6,11 +6,18 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
 import java.util.Arrays;
 
 import javax.swing.text.AbstractDocument;
 
 public class Sudoku extends JFrame {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
 
     private JPanel sudokuPanel;
     private JTextField[][] sudokuCells;

@@ -5,13 +5,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException; 
 import java.io.InputStream;
+import java.sql.Connection;
+
 import javax.imageio.ImageIO;
-import java.awt.Font;
-import java.awt.FontFormatException;
 
 
 
 public class MenuGame extends JFrame { 
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

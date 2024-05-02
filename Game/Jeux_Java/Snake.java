@@ -3,10 +3,17 @@ package Jeux_Java;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Snake extends JPanel implements KeyListener {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
     private static final int unit_size = 20;  
     private static final int  board_size = 20; 
     private static final int time = 200;

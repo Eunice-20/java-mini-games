@@ -7,10 +7,17 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.TimerTask;
 import java.awt.event.KeyListener;
+import java.sql.Connection;
 import java.awt.event.KeyEvent;
 
 public class memory extends JPanel implements ActionListener 
 {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
    // public static Image Bg; 
 
    public static  long previousTime;

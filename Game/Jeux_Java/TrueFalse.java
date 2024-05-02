@@ -6,11 +6,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class TrueFalse extends JFrame implements ActionListener {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(TrueFalse::new);
+    }
     private List<Question> questions;
     private JLabel questionLabel;
     private JButton trueButton;
@@ -19,9 +30,6 @@ public class TrueFalse extends JFrame implements ActionListener {
     private int currentQuestionIndex;
     private int score;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(TrueFalse::new);
-    }
 
     public TrueFalse() {
         questions = new ArrayList<>();
