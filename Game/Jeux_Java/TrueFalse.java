@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.sql.Connection;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,10 +18,10 @@ public class TrueFalse extends JFrame implements ActionListener {
     static final String PASS = "eunice";
     private static Connection conn;
 
-    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(TrueFalse::new);
     }
+
     private List<Question> questions;
     private JLabel questionLabel;
     private JButton trueButton;
@@ -30,10 +30,16 @@ public class TrueFalse extends JFrame implements ActionListener {
     private int currentQuestionIndex;
     private int score;
 
-
     public TrueFalse() {
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+
         questions = new ArrayList<>();
-        
+
         questions.add(new Question("La Terre est plate.", false));
         questions.add(new Question("Le soleil tourne autour de la Terre.", false));
         questions.add(new Question("Le chat est un reptile.", false));
@@ -45,8 +51,8 @@ public class TrueFalse extends JFrame implements ActionListener {
         questions.add(new Question("Java est un langage de programmation.", true));
         questions.add(new Question("je suis Eunice", true));
 
-        Collections.shuffle(questions); 
-        
+        Collections.shuffle(questions);
+
         currentQuestionIndex = 0;
         score = 0;
 
@@ -124,32 +130,50 @@ public class TrueFalse extends JFrame implements ActionListener {
         }
 
         currentQuestionIndex++;
+
         if (currentQuestionIndex < questions.size()) {
             questionLabel.setText(questions.get(currentQuestionIndex).getText());
             scoreLabel.setText("Score: " + score);
+            insererColonne(conn, score);
         } else {
             JOptionPane.showMessageDialog(this, "Fin du jeu. Votre score est de " + score);
             System.exit(0);
         }
     }
 
-  
-}
+    public static void insererColonne(Connection conn, int score ) {
+        try {
+            String sql = "INSERT INTO TrueFalsebase (score) VALUES (?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, score);
+                int lignesModifiees = pstmt.executeUpdate();
+                if (lignesModifiees > 0) {
+                    System.out.println("Insertion réussie !");
+                } else {
+                    System.out.println("Erreur lors de l'insertion.");
+                }
+            }
 
-class Question { 
-    private String text;
-    private boolean correct;
-
-    public Question(String text, boolean correct) {
-        this.text = text;
-        this.correct = correct;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public String getText() {
-        return text;
-    }
+    class Question {
+        private String text;
+        private boolean correct;
 
-    public boolean isCorrect() {
-        return correct;
+        public Question(String text, boolean correct) {
+            this.text = text;
+            this.correct = correct;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public boolean isCorrect() {
+            return correct;
+        }
     }
 }

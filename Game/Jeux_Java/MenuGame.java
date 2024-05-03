@@ -1,15 +1,14 @@
 package Jeux_Java;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException; 
 import java.io.InputStream;
 import java.sql.Connection;
-
+import java.io.File;
 import javax.imageio.ImageIO;
-
-
 
 public class MenuGame extends JFrame { 
 
@@ -21,30 +20,28 @@ public class MenuGame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                
+                // playSound("./Game/Jeux_Java/Ressources/Music/MuldiOpen.wav");
+
                 new MenuGame().setVisible(true);
+                
             }
         });
     }
-
-    
     
     public MenuGame() {
-        // setTitle("Multi_Game");
-
 
         try (InputStream inputStream = getClass().getResourceAsStream("./Game/Jeux_Java/file.txt/Jersey_10/Jersey10-Regular.ttf")) {
 
             // Thread.currentThread().getContextClassLoader().getResourceAsStream
              Font jerseyFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-            // Appliquer la police au titre de la fenêtre
-            setTitleFont(jerseyFont.deriveFont(24f)); // Modifier la taille de la police selon vos préférences
+            setTitleFont(jerseyFont.deriveFont(24f)); 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
-            // Gérer les erreurs lors du chargement de la police
+            
         }
 
         setTitle("Multi_Game");
-
         
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +59,7 @@ public class MenuGame extends JFrame {
                 }
             }
         };
+        
 
         getContentPane().add(panel);
         ImageIcon img = new ImageIcon("./Game/asset/Multi_Game.png");
@@ -76,6 +74,8 @@ public class MenuGame extends JFrame {
         flappyBirdButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+
                     startFlappyBird();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -88,6 +88,8 @@ public class MenuGame extends JFrame {
         snakeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+
                     startSnake();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -100,6 +102,8 @@ public class MenuGame extends JFrame {
         memoryButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+
                     startmemory();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -112,6 +116,8 @@ public class MenuGame extends JFrame {
         SudokuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+
                     startSudoku();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -124,6 +130,7 @@ public class MenuGame extends JFrame {
         Game2048Button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
                     startGame2048();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -136,6 +143,8 @@ public class MenuGame extends JFrame {
         gamepmpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+
                     startgamepmp();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -147,30 +156,31 @@ public class MenuGame extends JFrame {
         JButton  TrueFalseButton = new JButton(resizeImage( TrueFalseIcon, 200, 200));
         TrueFalseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
+                try {   
+                    playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+
                     startTrueFalse();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
+    
 
         ImageIcon  HangmanIcon = new ImageIcon("./Game/Jeux_Java/Ressources/MenuImg/Img_Hangman.png");
         JButton  HangmanButton = new JButton(resizeImage( HangmanIcon, 200, 200));
         HangmanButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    startHangman();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+           
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
+                        startHangman();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            }
         });
 
-        
-       
-        
-        
         panel.add(flappyBirdButton);
         panel.add(snakeButton);
         panel.add(memoryButton);
@@ -183,6 +193,17 @@ public class MenuGame extends JFrame {
         add(panel);
     }
 
+    public static void playSound(String soundFilePath) {
+        File soundFile = new File(soundFilePath);
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void startFlappyBird() throws Exception {
@@ -223,7 +244,7 @@ public class MenuGame extends JFrame {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
         Font currentFont = getFont();
-        Font newFont = currentFont.deriveFont(currentFont.getStyle(), 24); // Modifier la taille de la police selon vos préférences
+        Font newFont = currentFont.deriveFont(currentFont.getStyle(), 24);
         setFont(newFont);
     }
     

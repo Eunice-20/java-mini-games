@@ -1,8 +1,15 @@
 package Jeux_Java;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -211,20 +218,35 @@ public class Game2048 extends JFrame implements KeyListener {
             }
         }
     }
+    public void playSound(String soundFilePath) {
+        File soundFile = new File(soundFilePath);
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
+            playSound("./Game/Jeux_Java/Ressources/Music/NubS.wav");
                 moveLeft();
                 break;
             case KeyEvent.VK_RIGHT:
+            playSound("./Game/Jeux_Java/Ressources/Music/NubS.wav");
                 moveRight();
                 break;
             case KeyEvent.VK_UP:
+            playSound("./Game/Jeux_Java/Ressources/Music/NubS.wav");
                 moveUp();
                 break;
             case KeyEvent.VK_DOWN:
+            playSound("./Game/Jeux_Java/Ressources/Music/NubS.wav");
                 moveDown();
                 break;
         }

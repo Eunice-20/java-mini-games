@@ -69,8 +69,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
             SwingUtilities.invokeLater(() -> {
 
                 JFrame frame = new JFrame("Flappy Bird");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+                JFrame SnakeFrame = new JFrame();
+                SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                SnakeFrame.setVisible(false);
                 ImageIcon img = new ImageIcon("./asset/flappy_Brid.png");
                 Image icon = img.getImage();
 
@@ -79,8 +80,6 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
                 frame.setSize(boardWidth, boardHeight);
                 frame.setLocationRelativeTo(null);
                 frame.setResizable(false);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
                 FlappyBird flappyBird = new FlappyBird();
                 frame.add(flappyBird);
                 frame.pack();
@@ -204,8 +203,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
      private void startGame() {
         JFrame frame = new JFrame("Flappy Bird");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        JFrame SnakeFrame = new JFrame();
+        SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        SnakeFrame.setVisible(false);        
         // Créez une nouvelle instance de FlappyBird
         FlappyBird flappyBird = new FlappyBird();
         
@@ -225,9 +225,12 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
                 placePipeTimer.stop();
                 int choice = JOptionPane.showConfirmDialog(this, "Game Over! Score: " + score + "\nVoulez-vous rejouer ?", "Fin de la partie", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
-                    // Relancer le jeu lorsque l'utilisateur choisit de rejouer
                     startGame();
+                    JFrame SnakeFrame = new JFrame();
+                    SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    SnakeFrame.setVisible(false);
                 } else {
+                   
                     System.exit(0);
                 }
             }

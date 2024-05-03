@@ -6,9 +6,9 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Random;
+import java.sql.*;
 
 public class Hangman extends JFrame {
 
@@ -36,6 +36,13 @@ public class Hangman extends JFrame {
    }
 
    public Hangman() {
+
+    try {
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return;
+    }
     
        setTitle("Jeu du Hangman");
        setSize(400, 400);
@@ -77,7 +84,7 @@ public class Hangman extends JFrame {
                restartGame();
            }
        });
-       restartButton.setVisible(false); 
+       restartButton.setVisible(true); 
        panel.add(restartButton);
 
        scoreLabel = new JLabel("Score: " + score, SwingConstants.CENTER);
@@ -100,7 +107,7 @@ public class Hangman extends JFrame {
        lettresIncorrectesLabel.setText("");
        statutLabel.setText("");
        guessButton.setEnabled(true);
-       restartButton.setVisible(false); // Rendre le bouton "Rejouer" invisible
+       restartButton.setVisible(true); 
    }
 
    private void initGame() {
@@ -126,12 +133,12 @@ public class Hangman extends JFrame {
    }
 
    private void devinerLettre() {
-       String input = lettreField.getText(); // Récupérer l'entrée utilisateur
+       String input = lettreField.getText(); 
        if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
            JOptionPane.showMessageDialog(this, "Veuillez entrer une seule lettre valide.");
            return;
        }
-       char lettre = input.toUpperCase().charAt(0); // Convertir la lettre en majuscule
+       char lettre = input.toUpperCase().charAt(0); 
        lettreField.setText("");
 
        boolean lettreTrouvee = false;
@@ -143,7 +150,7 @@ public class Hangman extends JFrame {
            score += tentativesRestantes * 10;
            scoreLabel.setText("Score: " + score);
            guessButton.setEnabled(false);
-           restartButton.setVisible(true); // Rendre le bouton "Rejouer" visible
+           restartButton.setVisible(true); 
        }
 
        for (int i = 0; i < motSecret.length(); i++) {
@@ -168,6 +175,7 @@ public class Hangman extends JFrame {
                score += tentativesRestantes * 10;
                scoreLabel.setText("Score: " + score);
                guessButton.setEnabled(false);
+               insererColonne(score);
            }
        }
        if (tentativesRestantes == 0) {
@@ -216,7 +224,24 @@ public class Hangman extends JFrame {
             break;
     }
     if (img != null) {
-        hangmanImageLabel.setIcon(img); // Mettez à jour l'icône de l'image du pendu
+        hangmanImageLabel.setIcon(img); 
+    }
+}
+
+public static void insererColonne(int score) {
+    try {
+        String sql = "INSERT INTO hangmanbase (score) VALUES (?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, score);
+            int lignesModifiees = pstmt.executeUpdate();
+            if (lignesModifiees > 0) {
+                System.out.println("Insertion réussie !");
+            } else {
+                System.out.println("Erreur lors de l'insertion.");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
 }
 

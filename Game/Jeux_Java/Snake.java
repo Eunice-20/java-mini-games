@@ -1,11 +1,18 @@
 package Jeux_Java;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.sql.*;
 
 public class Snake extends JPanel implements KeyListener {
 
@@ -39,12 +46,11 @@ public class Snake extends JPanel implements KeyListener {
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
-                // Ajoutez un gestionnaire d'événements pour la fermeture de la fenêtre
                 frame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
                         super.windowClosing(e);
-                        frame.dispose(); // Ferme la fenêtre du jeu mais ne quitte pas l'application
+                        frame.dispose(); 
                     }
                 });
             });
@@ -57,6 +63,15 @@ public class Snake extends JPanel implements KeyListener {
     
     
     public Snake() {
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+
+
+       
         setPreferredSize(new Dimension( board_size * unit_size,  board_size * unit_size));
         setBackground(Color.WHITE);
         setFocusable(true);
@@ -144,22 +159,46 @@ public class Snake extends JPanel implements KeyListener {
         int x = rand.nextInt( board_size);
         int y = rand.nextInt( board_size);
         food = new Point(x, y);
+
     }
 // ---- la mise a jour ne fonctionne pas correctement a revoir -----
 
     private void gameOver() {
         running = false;
         int choice = JOptionPane.showConfirmDialog(this, "Game Over! Score: " + score + "\nVoulez-vous rejouer ?", "Fin de la partie", JOptionPane.YES_NO_OPTION);
+        insererColonne(score);
         if (choice == JOptionPane.YES_OPTION) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     startGame();
+                    
+
                 }
             });
         } else {
             System.exit(0);
         }
     }
+    public static void insererColonne(int score ) {
+        try {
+            String sql = "INSERT INTO Snakebase (score) VALUES (?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, score);
+                int lignesModifiees = pstmt.executeUpdate();
+                if (lignesModifiees > 0) {
+                    System.out.println("Insertion réussie !");
+                } else {
+                    System.out.println("Erreur lors de l'insertion.");
+                }
+            }
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+    
     
 
     @Override
@@ -172,21 +211,37 @@ public class Snake extends JPanel implements KeyListener {
             g.fillRect(p.x * unit_size, p.y * unit_size, unit_size, unit_size);
         }
     }
+     public void playSound(String soundFilePath) {
+        File soundFile = new File(soundFilePath);
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
                 if (direction != 'D') direction = 'U';
+                playSound("./Game/Jeux_Java/Ressources/Music/Snake.wav");
                 break;
             case KeyEvent.VK_DOWN:
                 if (direction != 'U') direction = 'D';
+                playSound("./Game/Jeux_Java/Ressources/Music/Snake.wav");
                 break;
             case KeyEvent.VK_LEFT:
                 if (direction != 'R') direction = 'L';
+                playSound("./Game/Jeux_Java/Ressources/Music/Snake.wav");
                 break;
             case KeyEvent.VK_RIGHT:
                 if (direction != 'L') direction = 'R';
+                playSound("./Game/Jeux_Java/Ressources/Music/Snake.wav");
                 break;
         }
     }

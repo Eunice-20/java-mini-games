@@ -39,6 +39,7 @@ public class Jeux1 {
 
         JButton leave = new JButton("Quitter");
         JButton btnD = new JButton("Devinez");
+        
 
         panel.add(textField);
         panel.add(leave);
@@ -84,7 +85,7 @@ public class Jeux1 {
                             if (guess == randomNumber) {
                                 score += 2;
                                 JOptionPane.showMessageDialog(null, "Bravo ! Vous avez deviné le nombre secret ! Votre score est : " + score);
-                                insererScore(score);
+                                insererColonne(score);
                             } else if (guess < randomNumber) {
                                 JOptionPane.showMessageDialog(null, "Le nombre secret est plus grand !");
                             } else {
@@ -103,13 +104,11 @@ public class Jeux1 {
         });
     }
 
-    public static void insererScore(int score) {
+    public static void insererColonne(int score) {
         try {
-            String sql = "INSERT INTO Jeux1 (score) VALUES (?)"; // Requête d'insertion
+            String sql = "INSERT INTO Jeux1 (score) VALUES (?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                // Définir les valeurs des paramètres de la requête
                 pstmt.setInt(1, score);
-                // Exécution de la requête d'insertion
                 int lignesModifiees = pstmt.executeUpdate();
                 if (lignesModifiees > 0) {
                     System.out.println("Insertion réussie !");
@@ -122,4 +121,3 @@ public class Jeux1 {
         }
     }
 }
-

@@ -1,14 +1,9 @@
 package Jeux_Java;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.TimerTask;
-import java.awt.event.KeyListener;
-import java.sql.Connection;
-import java.awt.event.KeyEvent;
+import java.sql.*;
 
 public class memory extends JPanel implements ActionListener 
 {
@@ -54,8 +49,15 @@ public class memory extends JPanel implements ActionListener
                     SwingUtilities.invokeLater(() -> memory());
                 }
 
-    public static void memory()
-    {
+    public static void memory(){
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+
         JLabel background = new JLabel(new ImageIcon(("./Game/asset/Memory/tapiscart.jpg")));
         frame.setContentPane(background);
         label = new JLabel();
@@ -93,7 +95,9 @@ frame.add(label);
         ra -= 1;
     }
         //label.setText("Devine a quelle nombre je pense.");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame SnakeFrame = new JFrame();
+        SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        SnakeFrame.setVisible(false);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
         frame.setLayout(null);
@@ -206,7 +210,32 @@ frame.add(label3);
         frame.add(restart);
         carda = 0;
         cp = 0;
+        insererColonne(score, elapsedTime, cp);
 }
+
+public static void insererColonne(int score , double elapsedTime , int cp) {
+    try {
+        String sql = "INSERT INTO Memorybase (score, elapsedTime, cp) VALUES (?,?,?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, score);
+            pstmt.setDouble(2, elapsedTime);
+            pstmt.setInt(3, cp);
+            int lignesModifiees = pstmt.executeUpdate();
+            if (lignesModifiees > 0) {
+                System.out.println("Insertion réussie !");
+            } else {
+                System.out.println("Erreur lors de l'insertion.");
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
+
        /*@Override
         public void actionPerformed(ActionEvent e) {
            // get reference to bound component

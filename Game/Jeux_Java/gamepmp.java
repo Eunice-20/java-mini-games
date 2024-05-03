@@ -1,20 +1,13 @@
 package Jeux_Java;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.sql.Connection;
 import java.util.Scanner;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class gamepmp extends JFrame implements ActionListener {
 

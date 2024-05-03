@@ -42,15 +42,15 @@ public class Sudoku extends JFrame {
 
         sudokuPanel = new JPanel(new GridLayout(9, 9));
         sudokuCells = new JTextField[9][9];
-        solution = generateSolution(); // Generating a solution for the puzzle
+        solution = generateSolution(); 
 
-        // Initializing sudoku cells and adding them to the panel
+       
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 sudokuCells[i][j] = new JTextField();
                 sudokuCells[i][j].setHorizontalAlignment(JTextField.CENTER);
 
-                // Apply document filter to restrict input to one digit and allow only numbers
+            
                 ((AbstractDocument) sudokuCells[i][j].getDocument()).setDocumentFilter(new DocumentFilter() {
                     @Override
                     public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
@@ -61,13 +61,12 @@ public class Sudoku extends JFrame {
                     }
                 });
 
-                // Add KeyListener to handle arrow key navigation
+               
                 sudokuCells[i][j].addKeyListener(new KeyAdapter() {
                     @Override
                     public void keyPressed(KeyEvent e) {
                         int row = -1;
                         int col = -1;
-                        // Find the current cell
                         for (int k = 0; k < 9; k++) {
                             for (int l = 0; l < 9; l++) {
                                 if (sudokuCells[k][l] == e.getSource()) {
@@ -78,7 +77,6 @@ public class Sudoku extends JFrame {
                             }
                         }
                         if (row != -1 && col != -1) {
-                            // Move focus to adjacent cell based on arrow key pressed
                             switch (e.getKeyCode()) {
                                 case KeyEvent.VK_UP:
                                     row = (row == 0) ? 8 : row - 1;
@@ -105,7 +103,6 @@ public class Sudoku extends JFrame {
         checkButton = new JButton("Check");
         statusLabel = new JLabel("");
 
-        // Adding action listener to the check button
         checkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,10 +124,8 @@ public class Sudoku extends JFrame {
         setVisible(true);
     }
 
-    // Function to generate a random sudoku solution
     private int[][] generateSolution() {
-        // Implementation of generating a random solution goes here
-        // For simplicity, let's just return a pre-defined solution
+        
         int[][] solution = {
                 {5, 3, 4, 6, 7, 8, 9, 1, 2},
                 {6, 7, 2, 1, 9, 5, 3, 4, 8},
