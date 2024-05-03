@@ -129,6 +129,7 @@ public class Snake extends JPanel implements KeyListener {
         if (!food.equals(newHead)) {
             snake.remove(snake.size() - 1);
         } else {
+            playSound("./Game/Jeux_Java/Ressources/Music/PomSnake.wav");
             Food();
             score++;
         }
