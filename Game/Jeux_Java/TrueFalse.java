@@ -1,13 +1,27 @@
 package Jeux_Java;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class TrueFalse extends JFrame implements ActionListener {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(TrueFalse::new);
+    }
     private List<Question> questions;
     private JLabel questionLabel;
     private JButton trueButton;
@@ -16,9 +30,6 @@ public class TrueFalse extends JFrame implements ActionListener {
     private int currentQuestionIndex;
     private int score;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(TrueFalse::new);
-    }
 
     public TrueFalse() {
         questions = new ArrayList<>();
@@ -40,9 +51,6 @@ public class TrueFalse extends JFrame implements ActionListener {
         score = 0;
 
         setTitle("Jeu Vrai ou Faux");
-        JFrame TrueFalseFrame = new JFrame();
-        TrueFalseFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        TrueFalseFrame.setVisible(false);
         setSize(1300, 1300);
         setLayout(new GridBagLayout());
         GridBagConstraints position = new GridBagConstraints();
@@ -52,13 +60,32 @@ public class TrueFalse extends JFrame implements ActionListener {
 
         ImageIcon img = new ImageIcon("./asset/TrueFalse.png");
         Image icon = img.getImage();
-      
-         setIconImage(icon);
+        setIconImage(icon);
+
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                try {
+                    Image image = ImageIO.read(getClass().getResource("./Ressources/MenuImg/Img_Font.png"));
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints panelPosition = new GridBagConstraints();
+        panelPosition.gridx = 0;
+        panelPosition.gridy = 0;
+        panelPosition.anchor = GridBagConstraints.CENTER;
+        panel.setPreferredSize(new Dimension(400, 300));
+        panel.setOpaque(false); // Make panel transparent
 
         questionLabel = new JLabel(questions.get(currentQuestionIndex).getText());
-        add(questionLabel, position);
+        panel.add(questionLabel, panelPosition);
 
-        position.gridy++;
+        panelPosition.gridy++;
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         trueButton = new JButton("Vrai");
         trueButton.addActionListener(this);
@@ -66,11 +93,13 @@ public class TrueFalse extends JFrame implements ActionListener {
         falseButton = new JButton("Faux");
         falseButton.addActionListener(this);
         buttonPanel.add(falseButton);
-        add(buttonPanel, position);
+        panel.add(buttonPanel, panelPosition);
 
-        position.gridy++;
+        panelPosition.gridy++;
         scoreLabel = new JLabel("Score: " + score);
-        add(scoreLabel, position);
+        panel.add(scoreLabel, panelPosition);
+
+        add(panel, position);
 
         pack();
         setLocationRelativeTo(null);

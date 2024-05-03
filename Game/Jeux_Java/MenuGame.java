@@ -5,11 +5,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException; 
 import java.io.InputStream;
+import java.sql.Connection;
+
 import javax.imageio.ImageIO;
 
 
 
 public class MenuGame extends JFrame { 
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -25,7 +33,9 @@ public class MenuGame extends JFrame {
 
 
         try (InputStream inputStream = getClass().getResourceAsStream("./Game/Jeux_Java/file.txt/Jersey_10/Jersey10-Regular.ttf")) {
-            Font jerseyFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+
+            // Thread.currentThread().getContextClassLoader().getResourceAsStream
+             Font jerseyFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             // Appliquer la police au titre de la fenêtre
             setTitleFont(jerseyFont.deriveFont(24f)); // Modifier la taille de la police selon vos préférences
         } catch (FontFormatException | IOException e) {
@@ -34,8 +44,6 @@ public class MenuGame extends JFrame {
         }
 
         setTitle("Multi_Game");
-
-
 
         
         setSize(600, 400);

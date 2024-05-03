@@ -1,14 +1,28 @@
 package Jeux_Java;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.sql.Connection;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class gamepmp extends JFrame implements ActionListener {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
+    static final String USER = "eunice";
+    static final String PASS = "eunice";
+    private static Connection conn;
+
 
 public static String file = "score.txt"; 
 
@@ -64,6 +78,9 @@ public static void main(String[] args)
         frame.setLocationRelativeTo(null);
 
     }
+
+    
+        
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==valide) {
             int devi=Integer.parseInt(nbj.getText());
