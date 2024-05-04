@@ -174,7 +174,8 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Eunice", Font.PLAIN, 32));
         if (gameOver) {
             g.drawString("Game Over: " + String.valueOf((int) score), 10, 35);
-        } else {
+            playSound("./Game/Jeux_Java/Ressources/Music/gameOver.wav");
+                } else {
             g.drawString(String.valueOf((int) score), 10, 35);
         }
 
@@ -229,6 +230,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         repaint();
 
         if (gameOver) {
+            playSound("./Game/Jeux_Java/Ressources/Music/gameOver.wav");
             if (placePipeTimer.isRunning()) {
                 placePipeTimer.stop();
                 int choice = JOptionPane.showConfirmDialog(this, "Game Over! Score: " + score + "\nVoulez-vous rejouer ?", "Fin de la partie", JOptionPane.YES_NO_OPTION);
@@ -263,7 +265,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            playSound("./Game/Jeux_Java/Ressources/Music/PomSnake.wav");
+            playSound("./Game/Jeux_Java/Ressources/Music/cat22.wav");
 
             if (!gameOver) {
                 velocityY = -9;

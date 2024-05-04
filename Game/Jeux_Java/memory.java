@@ -4,6 +4,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.io.File;
+import javax.sound.sampled.*;
+import java.io.IOException; 
+import java.sql.Connection;
+
 
 public class memory extends JPanel implements ActionListener 
 {
@@ -125,10 +130,12 @@ frame.add(label);
             cardt += 1;
         }
         if(cardt == 1 && ((JButton)e.getSource()) != h)
-        {
+        {       
             hj = ((JButton)e.getSource());
             kj = ((JButton)e.getSource()).getText();
             ((JButton)e.getSource()).setIcon(new ImageIcon(((JButton)e.getSource()).getText()));
+            // playSound("./Game/Jeux_Java/Ressources/Music/carte.wav");
+// 
             cardt += 1;
         }
         Timer timer = new Timer(2000, m -> {
@@ -162,7 +169,7 @@ frame.add(label);
         { 
             if (arr == null || index < 0
                 || index >= arr.length) { 
-      
+
                 return arr; 
             } 
             JButton[] anotherArray = new JButton[arr.length - 1]; 
@@ -211,6 +218,17 @@ frame.add(label3);
         carda = 0;
         cp = 0;
         insererColonne(score, elapsedTime, cp);
+}
+public static void playSound(String soundFilePath) {
+    File soundFile = new File(soundFilePath);
+    try {
+        javax.sound.sampled.AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+    } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+        e.printStackTrace();
+    }
 }
 
 public static void insererColonne(int score , double elapsedTime , int cp) {

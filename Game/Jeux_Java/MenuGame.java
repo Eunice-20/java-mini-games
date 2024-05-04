@@ -20,11 +20,9 @@ public class MenuGame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                
-                // playSound("./Game/Jeux_Java/Ressources/Music/MuldiOpen.wav");
-
+                playSound("./Game/Jeux_Java/Ressources/Music/Dema.wav");
                 new MenuGame().setVisible(true);
-                
+     
             }
         });
     }
@@ -75,7 +73,6 @@ public class MenuGame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
-
                     startFlappyBird();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -196,7 +193,7 @@ public class MenuGame extends JFrame {
     public static void playSound(String soundFilePath) {
         File soundFile = new File(soundFilePath);
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            javax.sound.sampled.AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();

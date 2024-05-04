@@ -6,18 +6,16 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
 import java.util.Arrays;
-
+import java.io.IOException; 
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.text.AbstractDocument;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sudoku extends JFrame {
-
-    static final String DB_URL = "jdbc:mysql://localhost:3306/database_db";
-    static final String USER = "eunice";
-    static final String PASS = "eunice";
-    private static Connection conn;
-
 
     private JPanel sudokuPanel;
     private JTextField[][] sudokuCells;
@@ -32,9 +30,6 @@ public class Sudoku extends JFrame {
     public Sudoku() {
         setTitle("Sudoku");
         setSize(400, 400);
-        JFrame SudokuFrame = new JFrame();
-        SudokuFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        SudokuFrame.setVisible(false);
         ImageIcon img = new ImageIcon("./asset/Sudoku.png");
         Image icon = img.getImage();
         setIconImage(icon);
@@ -44,13 +39,11 @@ public class Sudoku extends JFrame {
         sudokuCells = new JTextField[9][9];
         solution = generateSolution(); 
 
-       
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 sudokuCells[i][j] = new JTextField();
                 sudokuCells[i][j].setHorizontalAlignment(JTextField.CENTER);
 
-            
                 ((AbstractDocument) sudokuCells[i][j].getDocument()).setDocumentFilter(new DocumentFilter() {
                     @Override
                     public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
@@ -61,16 +54,19 @@ public class Sudoku extends JFrame {
                     }
                 });
 
-               
                 sudokuCells[i][j].addKeyListener(new KeyAdapter() {
                     @Override
                     public void keyPressed(KeyEvent e) {
+                        playSound("./Game/Jeux_Java/Ressources/Music/move.wav");
+
                         int row = -1;
                         int col = -1;
                         for (int k = 0; k < 9; k++) {
+
                             for (int l = 0; l < 9; l++) {
                                 if (sudokuCells[k][l] == e.getSource()) {
                                     row = k;
+
                                     col = l;
                                     break;
                                 }
@@ -124,39 +120,39 @@ public class Sudoku extends JFrame {
         setVisible(true);
     }
 
+    public static void playSound(String soundFilePath) {
+        File soundFile = new File(soundFilePath);
+        try {
+            javax.sound.sampled.AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private int[][] generateSolution() {
-        
         int[][] solution = {
-                {5, 3, 4, 6, 7, 8, 9, 1, 2},
-                {6, 7, 2, 1, 9, 5, 3, 4, 8},
-                {1, 9, 8, 3, 4, 2, 5, 6, 7},
-                {8, 5, 9, 7, 6, 1, 4, 2, 3},
-                {4, 2, 6, 8, 5, 3, 7, 9, 1},
-                {7, 1, 3, 9, 2, 4, 8, 5, 6},
-                {9, 6, 1, 5, 3, 7, 2, 8, 4},
-                {2, 8, 7, 4, 1, 9, 6, 3, 5},
-                {3, 4, 5, 2, 8, 6, 1, 7, 9}
+            {5, 3, 4, 6, 7, 8, 9, 1, 2},
+            {6, 7, 2, 1, 9, 5, 3, 4, 8},
+            {1, 9, 8, 3, 4, 2, 5, 6, 7},
+            {8, 5, 9, 7, 6, 1, 4, 2, 3},
+            {4, 2, 6, 8, 5, 3, 7, 9, 1},
+            {7, 1, 3, 9, 2, 4, 8, 5, 6},
+            {9, 6, 1, 5, 3, 7, 2, 8, 4},
+            {2, 8, 7, 4, 1, 9, 6, 3, 5},
+            {3, 4, 5, 2, 8, 6, 1, 7, 9}
         };
         return solution;
     }
 
-    private boolean isValidSetd() {
-        int[][] currentConfiguration = new int[9][9];
+    private boolean isValidSet() {
+        int[][] currentConfiguration = getCurrentConfiguration();
 
         for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                String text = sudokuCells[i][j].getText();
-                if (!text.isEmpty()) {
-                    currentConfiguration[i][j] = Integer.parseInt(text);
-                } else {
-                    currentConfiguration[i][j] = 0;
-                }
-            }
-        }
-
-        for (int i = 0; i < 9; i++) {
-            if (!isValidSetdSet(currentConfiguration[i]) || !isValidSetdSet(getColumn(currentConfiguration, i)) ||
-                    !isValidSetdSet(getSquare(currentConfiguration, i))) {
+            if (!isValidSetSet(currentConfiguration[i]) || !isValidSetSet(getColumn(currentConfiguration, i)) ||
+                    !isValidSetSet(getSquare(currentConfiguration, i))) {
                 return false;
             }
         }
@@ -164,7 +160,7 @@ public class Sudoku extends JFrame {
         return true;
     }
 
-    private boolean isValidSetdSet(int[] set) {
+    private boolean isValidSetSet(int[] set) {
         boolean[] seen = new boolean[10];
         for (int num : set) {
             if (num != 0 && seen[num]) {
