@@ -222,6 +222,8 @@ public class Hangman extends JFrame {
             hangmanImageLabel.setIcon(img);
         }
     }
+    //            playSound("./Game/Jeux_Java/Ressources/Music/carte.wav");
+
 
     public static void insererColonne(int score) {
         try {

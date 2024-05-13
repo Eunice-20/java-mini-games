@@ -127,6 +127,8 @@ frame.add(label);
             h = ((JButton)e.getSource());
             k = ((JButton)e.getSource()).getText();
             ((JButton)e.getSource()).setIcon(new ImageIcon(((JButton)e.getSource()).getText()));
+            playSound("./Game/Jeux_Java/Ressources/Music/carte.wav");
+
             cardt += 1;
         }
         if(cardt == 1 && ((JButton)e.getSource()) != h)
@@ -134,8 +136,9 @@ frame.add(label);
             hj = ((JButton)e.getSource());
             kj = ((JButton)e.getSource()).getText();
             ((JButton)e.getSource()).setIcon(new ImageIcon(((JButton)e.getSource()).getText()));
-            // playSound("./Game/Jeux_Java/Ressources/Music/carte.wav");
-// 
+            playSound("./Game/Jeux_Java/Ressources/Music/carte.wav");
+
+
             cardt += 1;
         }
         Timer timer = new Timer(2000, m -> {
@@ -143,6 +146,7 @@ frame.add(label);
             {  
                 if(k == kj &&  h != hj)
                     {
+                        playSound("./Game/Jeux_Java/Ressources/Music/ViCo.wav");
                     hj.setVisible(false); 
                     h.setVisible(false);     
                     frame.remove(hj);
@@ -187,21 +191,25 @@ public static void menumemo(){
 }
 
 public static void victory(){
+
+
+    playSound("./Game/Jeux_Java/Ressources/Music/MuldiOpen.wav");
+
     long currentTime = System.currentTimeMillis();
     double elapsedTime = (currentTime - previousTime) / 1000.0;
     label.setText("Temps : " + elapsedTime + "s");
-   JLabel label2 = new JLabel();
+    JLabel label2 = new JLabel();
     label2.setText("Nombre de coup :" + cp);
     label2.setBounds(450, 180, 1000, 100);
     label2.setFont(new Font("", Font.BOLD, 40));
-frame.add(label2);
-int scoreT ,scoreC, score;
-scoreC = 50 - (cp - 9);
-if(scoreC <= 0){scoreC = 0;}
-scoreT = 50 - ((int)elapsedTime/2);
-if(scoreT <= 0){scoreT = 0;}
-score = scoreT + scoreC;
-JLabel label3 = new JLabel();
+    frame.add(label2);
+    int scoreT ,scoreC, score;
+    scoreC = 50 - (cp - 9);
+    if(scoreC <= 0){scoreC = 0;}
+    scoreT = 50 - ((int)elapsedTime/2);
+    if(scoreT <= 0){scoreT = 0;}
+    score = scoreT + scoreC;
+    JLabel label3 = new JLabel();
     label3.setText("Ton score est de :" + score);
     label3.setBounds(450, 230, 1000, 100);
     label3.setFont(new Font("", Font.BOLD, 30));
@@ -219,6 +227,7 @@ frame.add(label3);
         cp = 0;
         insererColonne(score, elapsedTime, cp);
 }
+
 public static void playSound(String soundFilePath) {
     File soundFile = new File(soundFilePath);
     try {
@@ -250,6 +259,9 @@ public static void insererColonne(int score , double elapsedTime , int cp) {
         e.printStackTrace();
     }
 }
+
+
+
 
 
 

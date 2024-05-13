@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException; 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.io.File;
 import javax.imageio.ImageIO;
