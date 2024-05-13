@@ -77,9 +77,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
             SwingUtilities.invokeLater(() -> {
 
                 JFrame frame = new JFrame("Flappy Bird");
-                JFrame SnakeFrame = new JFrame();
-                SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                SnakeFrame.setVisible(false);
+                JFrame FlappyBirdFrame = new JFrame();
+                FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                FlappyBirdFrame.setVisible(false);
                 ImageIcon img = new ImageIcon("./asset/flappy_Brid.png");
                 Image icon = img.getImage();
 
@@ -212,9 +212,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
      private void startGame() {
         JFrame frame = new JFrame("Flappy Bird");
-        JFrame SnakeFrame = new JFrame();
-        SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        SnakeFrame.setVisible(false);        
+        JFrame FlappyBirdFrame = new JFrame();
+        FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        FlappyBirdFrame.setVisible(false);        
         // Créez une nouvelle instance de FlappyBird
         FlappyBird flappyBird = new FlappyBird();
         
@@ -236,12 +236,12 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
                 int choice = JOptionPane.showConfirmDialog(this, "Game Over! Score: " + score + "\nVoulez-vous rejouer ?", "Fin de la partie", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
                     startGame();
-                    JFrame SnakeFrame = new JFrame();
-                    SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    SnakeFrame.setVisible(false);
+                    JFrame FlappyBirdFrame = new JFrame();
+                    FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    FlappyBirdFrame.setVisible(false);
                 } else {
-                   
-                    System.exit(0);
+                    JFrame FlappyBirdFrame = new JFrame();
+                    FlappyBirdFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 }
             }
             if (gameLoop.isRunning()) {

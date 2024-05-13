@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.io.File;
 import javax.sound.sampled.*;
-import java.io.IOException; 
-import java.sql.Connection;
+import java.io.IOException;
 
 
 public class memory extends JPanel implements ActionListener 
@@ -50,9 +49,9 @@ public class memory extends JPanel implements ActionListener
     
     public static int carda;
 
-                public static void main(String[] args) {
-                    SwingUtilities.invokeLater(() -> memory());
-                }
+    public static void main(String[] args) {
+     SwingUtilities.invokeLater(() -> memory());
+    }
 
     public static void memory(){
 
@@ -116,7 +115,8 @@ frame.add(label);
 	public void actionPerformed(ActionEvent e) 
     {
         if(((JButton)e.getSource()) == exit){
-            System.exit(0);
+            JFrame FlappyBirdFrame = new JFrame();
+                    FlappyBirdFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
         if(((JButton)e.getSource()) == restart){
         memory();

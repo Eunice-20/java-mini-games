@@ -177,7 +177,8 @@ public class Snake extends JPanel implements KeyListener {
                 }
             });
         } else {
-            System.exit(0);
+            JFrame SnakeFrame = new JFrame();
+            SnakeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
     }
     public static void insererColonne(int score ) {

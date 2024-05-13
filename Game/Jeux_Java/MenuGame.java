@@ -29,16 +29,6 @@ public class MenuGame extends JFrame {
     
     public MenuGame() {
 
-        try (InputStream inputStream = getClass().getResourceAsStream("./Game/Jeux_Java/file.txt/Jersey_10/Jersey10-Regular.ttf")) {
-
-            // Thread.currentThread().getContextClassLoader().getResourceAsStream
-             Font jerseyFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-            setTitleFont(jerseyFont.deriveFont(24f)); 
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-            
-        }
-
         setTitle("Multi_Game");
         
         setSize(600, 400);
@@ -59,11 +49,12 @@ public class MenuGame extends JFrame {
         };
         
 
+
+
         getContentPane().add(panel);
         ImageIcon img = new ImageIcon("./Game/asset/Multi_Game.png");
         Image icon = img.getImage();
         setIconImage(icon);
-        
 
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 49, 50)); 
 
@@ -178,6 +169,7 @@ public class MenuGame extends JFrame {
                 }
         });
 
+        
         panel.add(flappyBirdButton);
         panel.add(snakeButton);
         panel.add(memoryButton);
@@ -201,6 +193,7 @@ public class MenuGame extends JFrame {
             e.printStackTrace();
         }
     }
+
 
 
     private void startFlappyBird() throws Exception {

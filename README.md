@@ -8,9 +8,9 @@
 
 Tous ces jeux  utilisent une base de données MySQL pour stocker les données, y compris les scores, les réponses aux questions True/False, et la vitesse de l'utilisateur. Ces jeux sont principalement développés en Java, un langage très adapté pour ce type de projet de création de mini-jeux.
 
-<img src="./Imgred/image.png" alt="texte alternatif" style="width:70px;height:px;"> 
+<img src="./Game/asset/image.png" alt="texte alternatif" style="width:70px;height:px;"> 
 
-<img src="./Imgred/image-1.png"  alt="texte alternatif" style="width:70px;height:px;">
+<img src="./Game/asset/image-1.png"  alt="texte alternatif" style="width:70px;height:px;">
 
 
  ### Jeux Realiser 
@@ -156,6 +156,8 @@ Démarrage du menu des jeux
 -- Empty set (0.02 sec)
 
 -- mysql>
+
+
 
 
 
@@ -351,3 +353,8 @@ Démarrage du menu des jeux
 --         id INT AUTO_INCREMENT PRIMARY KEY,
 --        score INT
 --          ); -->
+
+CREATE TABLE IF NOT EXISTS userbase (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      pseudo INT
+      );

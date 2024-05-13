@@ -86,7 +86,7 @@ public class TrueFalse extends JFrame implements ActionListener {
         panelPosition.gridy = 0;
         panelPosition.anchor = GridBagConstraints.CENTER;
         panel.setPreferredSize(new Dimension(400, 300));
-        panel.setOpaque(false); // Make panel transparent
+        panel.setOpaque(false);
 
         questionLabel = new JLabel(questions.get(currentQuestionIndex).getText());
         panel.add(questionLabel, panelPosition);
