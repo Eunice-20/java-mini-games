@@ -32,7 +32,7 @@ Le but du jeu est de deviner le nombre secret en un minimum de tentatives.
 4. Un message de victoire vous sera adressé lorsque le nombre aura été trouvé.
 
 
-#### True Or False
+### True Or False
 
 True Or False est un jeu de questions-réponses où le joueur doit déterminer si une affirmation donnée est vraie ou fausse.
 
@@ -44,7 +44,7 @@ Le but du jeu est de répondre correctement au maximum d'affirmations pour obten
 1.  lit une affirmation et sélectionne "True" (vrai) ou "False" (faux) selon semble correct.
 2.  Un message vous sera adressé lorsque l'affirmation est correct ou non.
 
-#### Jeu du Pendu
+### Jeu du Pendu
 
  Le Jeu du Pendu est un jeu où le joueur doit deviner un mot en proposant des lettres. 
 
@@ -61,7 +61,7 @@ Le but du jeu est de deviner le mot avant que le dessin d'un pendu complet ne so
 5. Un message de victoire vous sera adressé lorsque le mot aura été trouvé.
 
 
-#### Memory
+### Memory
 Le jeu Memory est un jeu de société où le joueur doit retrouver des paires de cartes identiques.
 
 **But du jeu**
@@ -76,7 +76,7 @@ Le but du jeu est de retrouver toutes les paires de cartes en un minimum de coup
 4. Rappelez vous de l'emplacement des cartes pour former des paires.
 
 
-#### Sudoku
+### Sudoku
 
 Le Sudoku est un jeu de logique où le joueur remplit une grille de 9x9 cases avec des chiffres de 1 à 9.
 
@@ -93,7 +93,7 @@ Le but du jeu est de remplir la grille de manière à ce que chaque ligne, chaqu
 
 
 
-#### 2048
+### 2048
 
 2048 est un jeu de puzzle où le joueur combine des tuiles numérotées pour atteindre la tuile 2048.
 
@@ -108,7 +108,7 @@ Le but du jeu est d'obtenir une tuile numérotée 2048 en combinant les tuiles a
 3. Le jeu prend fin lorsque qu'une tuile atteint le nombre 2048.
 
 
-#### Snake
+### Snake
 
 Snake est un jeu où le joueur contrôle un serpent qui se déplace sur l'écran en mangeant des fruits pour grandir.
 
@@ -122,7 +122,7 @@ Le but du jeu est de faire grandir le serpent autant que possible sans le faire 
 2. Chaque fois que le serpent mange un fruit, sa longueur augmente et le joueur gagne des points.
 3. Le jeu se termine si le serpent entre en collision avec lui-même ou avec les bords de l'écran.
 
-#### Flappy Bird
+### Flappy Bird
 
 Flappy Bird est un jeu où le joueur contrôle un oiseau qui vole à travers des obstacles en tapant sur l'écran pour battre des ailes.
 
