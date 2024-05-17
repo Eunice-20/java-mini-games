@@ -33,9 +33,9 @@ public static int niv = 1;
 
 public static int devine = (int)(Math.random() * 1000);
 
-public static ImageIcon haut = new ImageIcon("./asset/haut.png");
+public static ImageIcon haut = new ImageIcon("./Game/asset/haut.png");
 
-public static ImageIcon bas = new ImageIcon("./asset/bas.png");
+public static ImageIcon bas = new ImageIcon("./Game/asset/bas.png");
 public static void main(String[] args) 
    {
         Scanner myObj = new Scanner(System.in);

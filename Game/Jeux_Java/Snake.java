@@ -21,8 +21,8 @@ public class Snake extends JPanel implements KeyListener {
     static final String PASS = "eunice";
     private static Connection conn;
 
-    private static final int unit_size = 20;  
-    private static final int  board_size = 20; 
+    private static final int unit_size = 30;  
+    private static final int  board_size = 25; 
     private static final int time = 200;
     
     private ArrayList<Point> snake;
@@ -39,7 +39,7 @@ public class Snake extends JPanel implements KeyListener {
                 JFrame SnakeFrame = new JFrame();
                 SnakeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                 SnakeFrame.setVisible(false);
-                ImageIcon img = new ImageIcon("./asset/Snake_Game.png");
+                ImageIcon img = new ImageIcon("./Game/asset/Snake_Game.png");
                 Image icon = img.getImage();
                 frame.setIconImage(icon);
                 frame.getContentPane().add(new Snake());
@@ -69,7 +69,6 @@ public class Snake extends JPanel implements KeyListener {
             e.printStackTrace();
             return;
         }
-
 
        
         setPreferredSize(new Dimension( board_size * unit_size,  board_size * unit_size));
