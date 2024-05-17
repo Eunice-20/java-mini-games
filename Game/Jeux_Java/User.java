@@ -1,5 +1,6 @@
 package Jeux_Java;
 
+ import java.sql.SQLException;
  import java.sql.*;
  import java.awt.event.*;
  import javax.swing.*;
@@ -29,7 +30,7 @@ public class User extends JFrame {
     public User() {
        
 
-        super("Saisie de pseudo");
+        super(" pseudo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -59,7 +60,6 @@ public class User extends JFrame {
         
                 if (!pseudo.isEmpty()) {
                     insererColonne(pseudo);
-
                     playSound("./Game/Jeux_Java/Ressources/Music/Dema.wav");
 
                     MenuGame menu = new MenuGame();

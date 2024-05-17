@@ -1,4 +1,5 @@
 package Jeux_Java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -69,45 +70,17 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     double score = 0;
 
     public static void main(String[] args) {
-        int boardWidth = 360;
-        int boardHeight = 640;
-
-        int choice = JOptionPane.showConfirmDialog(null, "Voulez-vous jouer a Flappy Bird ?", " ", JOptionPane.YES_NO_OPTION);
-        if (choice == JOptionPane.YES_OPTION) {
-            SwingUtilities.invokeLater(() -> {
-
-                JFrame frame = new JFrame("Flappy Bird");
-                JFrame FlappyBirdFrame = new JFrame();
-                FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                FlappyBirdFrame.setVisible(false);
-                ImageIcon img = new ImageIcon("./asset/flappy_Brid.png");
-                Image icon = img.getImage();
-
-                frame.setVisible(true);
-                frame.setIconImage(icon);
-                frame.setSize(boardWidth, boardHeight);
-                frame.setLocationRelativeTo(null);
-                frame.setResizable(false);
-                FlappyBird flappyBird = new FlappyBird();
-                frame.add(flappyBird);
-                frame.pack();
-                flappyBird.requestFocus();
-                frame.setVisible(true);
-                frame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        frame.dispose(); // Ferme la fenêtre du jeu mais ne quitte pas l'application
-                    }
-                });
-        
-            });
-
-        } else {
-            JFrame FlappyBirdFrame = new JFrame();
-            FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            FlappyBirdFrame.setVisible(false);
-        }
+        SwingUtilities.invokeLater(() -> {
+            FlappyBird game = new FlappyBird();
+            JFrame frame = new JFrame("Flappy Bird");
+            frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            frame.setSize(game.boardWidth, game.boardHeight);
+            frame.setResizable(false);
+            frame.setLocationRelativeTo(null);
+            frame.add(game);
+            frame.setVisible(true);
+            game.requestFocus();
+        });
     }
 
     FlappyBird() {
@@ -116,8 +89,8 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         setFocusable(true);
         addKeyListener(this);
 
-        backgroundImg = new ImageIcon(getClass().getResource("./Ressources/flappybirdbg.png")).getImage();
-        birdImg = new ImageIcon(getClass().getResource("./Ressources/flappybird.png")).getImage();
+        backgroundImg = new ImageIcon(getClass().getResource("./Ressources/FlappyBirdbg.png")).getImage();
+        birdImg = new ImageIcon(getClass().getResource("./Ressources/FlappyBird.png")).getImage();
         topPipeImg = new ImageIcon(getClass().getResource("./Ressources/toppipe.png")).getImage();
         bottomPipeImg = new ImageIcon(getClass().getResource("./Ressources/bottompipe.png")).getImage();
 
@@ -175,7 +148,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         if (gameOver) {
             g.drawString("Game Over: " + String.valueOf((int) score), 10, 35);
             playSound("./Game/Jeux_Java/Ressources/Music/gameOver.wav");
-                } else {
+        } else {
             g.drawString(String.valueOf((int) score), 10, 35);
         }
 
@@ -210,20 +183,6 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
     }
 
-     private void startGame() {
-        JFrame frame = new JFrame("Flappy Bird");
-        JFrame FlappyBirdFrame = new JFrame();
-        FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        FlappyBirdFrame.setVisible(false);        
-        // Créez une nouvelle instance de FlappyBird
-        FlappyBird flappyBird = new FlappyBird();
-        
-        frame.add(flappyBird);
-        frame.pack();
-        flappyBird.requestFocus();
-        frame.setVisible(true);
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         move();
@@ -235,13 +194,11 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
                 placePipeTimer.stop();
                 int choice = JOptionPane.showConfirmDialog(this, "Game Over! Score: " + score + "\nVoulez-vous rejouer ?", "Fin de la partie", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
-                    startGame();
-                    JFrame FlappyBirdFrame = new JFrame();
-                    FlappyBirdFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    FlappyBirdFrame.setVisible(false);
+                    new FlappyBird();
                 } else {
-                    JFrame FlappyBirdFrame = new JFrame();
-                    FlappyBirdFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            
+                    JFrame frame = new JFrame("Flappy Bird");
+                    frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                 }
             }
             if (gameLoop.isRunning()) {
@@ -288,6 +245,4 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
     }
-
-   
 }

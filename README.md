@@ -15,56 +15,154 @@ Tous ces jeux  utilisent une base de données MySQL pour stocker les données, y
 
  ### Jeux Realiser 
 
- <!-- definit le jeux
-
-  le but jeux 
-
-comment  jouer  -->
-
 
 #### Jeux du + ou - 
 
+Le jeu du + ou - est un jeu de devinette où le joueur doit deviner un nombre secret choisi aléatoirement par l'ordinateur. 
 
+- **But du jeu**
+
+Le but du jeu est de deviner le nombre secret en un minimum de tentatives.
+
+- **Comment jouer**
+
+1. Proposez un nombre à l'ordinateur.
+2. Cliquez sur le bouton pour vérifier si le nombre à deviner est correct.
+3. L'ordinateur vous indiquera si le nombre deviné est plus grand, plus petit ou égal au nombre proposé.
+4. Un message de victoire vous sera adressé lorsque le nombre aura été trouvé.
 
 
 #### True Or False
 
+True Or False est un jeu de questions-réponses où le joueur doit déterminer si une affirmation donnée est vraie ou fausse.
 
+- **But du jeu**
+Le but du jeu est de répondre correctement au maximum d'affirmations pour obtenir le meilleur score possible.
+
+- **Comment jouer**
+
+1.  lit une affirmation et sélectionne "True" (vrai) ou "False" (faux) selon semble correct.
+2.  Un message vous sera adressé lorsque l'affirmation est correct ou non.
 
 #### Jeu du Pendu
 
+ Le Jeu du Pendu est un jeu où le joueur doit deviner un mot en proposant des lettres. 
+
+**But du jeu**
+
+Le but du jeu est de deviner le mot avant que le dessin d'un pendu complet ne soit dessiné.
+
+**Comment jouer**
+
+1. le joueur propose des lettres. 
+2. Si la lettre proposée est dans le mot à deviner, elle est affichée à sa position.
+3. Sinon, une partie du pendu est dessinée.
+4. Le joueur a un nombre limité de tentatives pour deviner le mot.
+5. Un message de victoire vous sera adressé lorsque le mot aura été trouvé.
 
 
 #### Memory
+Le jeu Memory est un jeu de société où le joueur doit retrouver des paires de cartes identiques.
 
+**But du jeu**
 
+Le but du jeu est de retrouver toutes les paires de cartes en un minimum de coups.
+
+**Comment jouer**
+
+1. Retournez deux cartes à la fois. 
+2. Si les cartes retournées sont identiques, elles restent découvertes et votre score augumente de 2. 
+3. Sinon, les cartes sont à nouveau retournées face cachée.
+4. Rappelez vous de l'emplacement des cartes pour former des paires.
 
 
 #### Sudoku
+
+Le Sudoku est un jeu de logique où le joueur remplit une grille de 9x9 cases avec des chiffres de 1 à 9.
+
+**But du jeu**
+
+Le but du jeu est de remplir la grille de manière à ce que chaque ligne, chaque colonne et chaque région de 3x3 cases contienne tous les chiffres de 1 à 9 sans répétition.
+
+**Comment jouer**
+
+1. Remplicez la grille en suivant les règles du Sudoku. 
+2. Chaque chiffre doit être unique dans chaque ligne, 
+3. Chaque colonne et chaque région de 3x3 cases, les chiffre doit être unique
+4. Un message de victoire vous sera adressé lorsque la grille  aura été Resolut.
 
 
 
 #### 2048
 
+2048 est un jeu de puzzle où le joueur combine des tuiles numérotées pour atteindre la tuile 2048.
+
+**But du jeu**
+
+Le but du jeu est d'obtenir une tuile numérotée 2048 en combinant les tuiles adjacentes portant le même numéro.
+
+**Comment jouer**
+
+1. Déplacez les tuiles numérotées sur une grille 4x4 en utilisant les touches fléchées.
+2. Si deux tuiles du même numéro entrent en collision, elles fusionnent pour former une tuile portant le double de leur valeur.
+3. Le jeu prend fin lorsque qu'une tuile atteint le nombre 2048.
 
 
 #### Snake
 
+Snake est un jeu où le joueur contrôle un serpent qui se déplace sur l'écran en mangeant des fruits pour grandir.
 
+**But du jeu**
+
+Le but du jeu est de faire grandir le serpent autant que possible sans le faire entrer en collision avec lui-même ou avec les bords de l'écran.
+
+**Comment jouer**
+
+1. Utilisez les touches directionnelles pour diriger le serpent. 
+2. Chaque fois que le serpent mange un fruit, sa longueur augmente et le joueur gagne des points.
+3. Le jeu se termine si le serpent entre en collision avec lui-même ou avec les bords de l'écran.
 
 #### Flappy Bird
 
+Flappy Bird est un jeu où le joueur contrôle un oiseau qui vole à travers des obstacles en tapant sur l'écran pour battre des ailes.
 
+**But du jeu**
 
+Le but du jeu est de voler le plus loin possible en évitant les tuyaux sans toucher le sol ou les obstacles.
 
- ## Structure programme
- 
- 
+**Comment jouer**
 
+1. Appuie sur la touche flèche du haut de votre ordinateur pour faire battre des ailes à l'oiseau.
+2. Chaque battement d'aile fait monter légèrement l'oiseau.
+3. Synchronisez vos battements d'ailes pour naviguer à travers les espaces entre les tuyaux et marquer des points.
+4. Un message de fin de partie vous sera adressé lorsque vous aurez heurté un tuyau.
 
- ## Acce projet 
+### Structure du Programme Java Mini-Jeux
 
- <!-- Instalation du projet -->
+**Dossier Game**
+
+Ce dossier contient le code source et les ressources des jeux Java :
+
+- **asset** : Contient les ressources graphiques.
+  
+- **Memory** : Contient les images des cartes spécifiques au jeu de Memory.
+
+- **Jeux_Java** : Contient le code source des différents jeux Java.
+
+- **file** : Contient les fichiers des mots aléatoires du Hangman.
+
+- **Ressources** : Contient les ressources spécifiques aux jeux, telles que les images de menu et la musique.
+
+- **MenuImg** : Contient les images des interfaces graphiques de chaque jeu dans les menus pour une meilleure distinction.
+
+- **Music** : Contient les fichiers audio utilisés dans les jeux.
+
+**Dossier lib**
+
+Ce dossier contient la bibliothèque externe et le fichier JAR nécessaires au projet.
+
+ ## Accès projet
+
 Les étapes pour accéder projet  :
 
 Clonez ce dépôt github sur votre machine:
@@ -76,285 +174,10 @@ https://github.com/Eunice-20/java-mini-games.git
 Démarrage du menu des jeux 
 
 ```
+PS C:\Users\Usager\OneDrive\Bureau\java-mini-games>  c:; cd 'c:\Users\Usager\OneDrive\Bureau\java-mini-games'; & 'C:\Program Files\Java\jdk-17\bin\java.exe' '@C:\Users\Usager\AppData\Local\Temp\cp_csim4huze8r7a9ma5onbt3x8u.argfile' 'Jeux_Java.User'
 ```
 
 
  ## Remeciment
 
- Ce projet a été d'une grande aide pour """""""" la création de plusieur mini jeux . Ravi d'y avoir participé, Merci d'avoir consacré votre temps et votre attention à la conception du projet.
-
-
-
-
-<!-- 
--- git config --global --add safe.directory C:/Users/Usager/OneDrive/Bureau/java-mini-games
-
-
-
--- SHOW DATABASES;
-
--- SELECT * FROM ma_table;
--- SELECT * FROM ma_table; :
--- Cette commande est une requête de sélection (SELECT) qui récupère toutes les lignes et toutes les colonnes de la table spécifiée (ma_table). Lorsque vous exécutez cette commande, MySQL retournera toutes les données stockées dans la table ma_table.
-
--- data base 
--- mysql> SHOW DATABASES;mysql> CREATE DATABASE database_DB;
--- Query OK, 1 row affected (0.01 sec)
-
--- mysql> SHOW DATABASES;
--- +--------------------+
--- | Database           |
--- +--------------------+
--- | database_db        |
--- | information_schema |
--- | mysql              |
--- | performance_schema |
--- | sys                |
--- +--------------------+
--- 5 rows in set (0.00 sec)
-
--- mysql>
-
-
-
-
-
--- PS C:\Users\Usager\java-minigames> Copy-Item "C:\Program Files\Java\jdk-17\lib\jrt-fs.jar" ".\lib"
-
--- ette commande utilise Copy-Item pour copier le fichier jrt-fs.jar dans le dossier lib que vous avez créé à la racine de votre projet
-
-
--- ```
--- Enter password: ******
--- Welcome to the MySQL monitor.  Commands end with ; or \g.
--- Your MySQL connection id is 13
--- Server version: 8.0.36 MySQL Community Server - GPL
-
--- Copyright (c) 2000, 2024, Oracle and/or its affiliates.
-
--- Oracle is a registered trademark of Oracle Corporation and/or its
--- affiliates. Other names may be trademarks of their respective
--- owners.
-
--- Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
--- mysql> SHOW DATABASES;
--- +--------------------+
--- | Database           |
--- +--------------------+
--- | database_db        |
--- | information_schema |
--- | mysql              |
--- | performance_schema |
--- | sys                |
--- +--------------------+
--- 5 rows in set (0.03 sec)
-
--- mysql> use database_db;
--- Database changed
--- mysql> show tables;
--- Empty set (0.02 sec)
-
--- mysql>
-
-
-
-
-
-
-
--- mysql> use database_db;
--- Database changed
--- mysql> show tables;
--- +-----------------------+
--- | Tables_in_database_db |
--- +-----------------------+
--- | jeux1                 |
--- +-----------------------+
--- 1 row in set (0.01 sec)
-
--- mysql> CREATE TABLE IF NOT EXISTS HangmanBase (
---     ->     id INT AUTO_INCREMENT PRIMARY KEY,
---     ->     score INT
---     -> );
--- Query OK, 0 rows affected (0.11 sec)
-
--- mysql> INSERT INTO HangmanBase (score) VALUES (100);
--- Query OK, 1 row affected (0.01 sec)
-
--- mysql> INSERT INTO HangmanBase (score) VALUES (score);
--- Query OK, 1 row affected (0.01 sec)
-
--- mysql> show tables;
--- +-----------------------+
--- | Tables_in_database_db |
--- +-----------------------+
--- | hangmanbase           |
--- | jeux1                 |
--- +-----------------------+
--- 2 rows in set (0.00 sec)
-
--- mysql>
--- ```
-
--- ----------
-
-
--- mysql>  CREATE TABLE IF NOT EXISTS Memorybase (
---     ->      id INT AUTO_INCREMENT PRIMARY KEY,
---     ->      score INT
---     ->      );
--- ERROR 1046 (3D000): No database selected
--- mysql> SHOW DATABASES;
--- +--------------------+
--- | Database           |
--- +--------------------+
--- | database_db        |
--- | information_schema |
--- | mysql              |
--- | performance_schema |
--- | sys                |
--- +--------------------+
--- 5 rows in set (0.01 sec)
-
--- mysql> show tables;
--- ERROR 1046 (3D000): No database selected
--- mysql> use database_db;
--- Database changed
--- mysql> show tables;
--- +-----------------------+
--- | Tables_in_database_db |
--- +-----------------------+
--- | hangmanbase           |
--- | jeux1                 |
--- | memorybase            |
--- +-----------------------+
--- 3 rows in set (0.01 sec)
-
--- mysql>
-
-
-
-
-
---      CREATE TABLE IF NOT EXISTS Memorybase (
---      id INT AUTO_INCREMENT PRIMARY KEY,
---      score INT
---      );
-
---      mysql> ALTER TABLE Memorybase
---     -> ADD COLUMN elapsedTime DOUBLE DEFAULT 0;
--- Query OK, 0 rows affected (0.13 sec)
--- Records: 0  Duplicates: 0  Warnings: 0
-
--- ---- pour modifier 
-
--- mysql> ALTER TABLE Memorybase
---     -> MODIFY COLUMN elapsedTime DOUBLE;
--- Query OK, 0 rows affected (0.04 sec)
--- Records: 0  Duplicates: 0  Warnings: 0
-
-
-
---  ALTER TABLE Memorybase
--- DROP COLUMN ;
-
-
--- --------
-
--- mysql> select * from memorybase;
--- +----+-------+-------------+
--- | id | score | elapsedTime |
--- +----+-------+-------------+
--- |  1 |    52 |           0 |
--- |  2 |  NULL |      69.845 |
--- |  3 |    55 |           0 |
--- |  4 |  NULL |      67.149 |
--- |  5 |    59 |           0 |
--- |  6 |  NULL |      60.772 |
--- |  7 |    60 |           0 |
--- |  8 |  NULL |      77.931 |
--- |  9 |    50 |        NULL |
--- | 10 |  NULL |       88.91 |
--- | 11 |    39 |        NULL |
--- +----+-------+-------------+
--- 11 rows in set (0.00 sec)
-
--- mysql> flush memorydatabase
---     -> ;
--- ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'memorydatabase' at line 1
--- mysql> DELETE FROM memorybase;
--- Query OK, 11 rows affected (0.01 sec)
-
--- mysql> select * from memorybase;
--- Empty set (0.00 sec)
-
--- mysql> select * from memorybase;
--- Empty set (0.00 sec)
-
--- mysql> select * from memorybase;
--- +----+-------+-------------+
--- | id | score | elapsedTime |
--- +----+-------+-------------+
--- | 12 |  NULL |     105.159 |
--- | 13 |    34 |        NULL |
--- +----+-------+-------------+
--- 2 rows in set (0.00 sec)
-
--- mysql>
-
--- ALTER TABLE Memorybase
---     ADD COLUMN cp Int;
-
---     mysql> ALTER TABLE Memorybase
---     ->     ADD COLUMN cp Int;
--- Query OK, 0 rows affected (0.05 sec)
--- Records: 0  Duplicates: 0  Warnings: 0
-
--- mysql> select * from memorybase;
--- +----+-------+-------------+------+
--- | id | score | elapsedTime | cp   |
--- +----+-------+-------------+------+
--- | 12 |  NULL |     105.159 | NULL |
--- | 13 |    34 |        NULL | NULL |
--- | 14 |    43 |        NULL | NULL |
--- | 15 |    69 |        NULL | NULL |
--- | 16 |    55 |        NULL | NULL |
--- | 17 |    57 |      58.605 | NULL |
--- +----+-------+-------------+------+
--- 6 rows in set (0.00 sec)
-
--- mysql>
-
-
-
--- mysql> CREATE TABLE IF NOT EXISTS Snakebase (
---     ->     id INT AUTO_INCREMENT PRIMARY KEY,
---     ->     score INT
---     ->      );
--- Query OK, 0 rows affected (0.06 sec)
-
--- mysql> show tables;
--- +-----------------------+
--- | Tables_in_database_db |
--- +-----------------------+
--- | hangmanbase           |
--- | jeux1                 |
--- | memorybase            |
--- | snakebase             |
--- +-----------------------+
--- 4 rows in set (0.01 sec)
-
-
-
--- TrueFalsebase
-
--- CREATE TABLE IF NOT EXISTS Snakebase (
---         id INT AUTO_INCREMENT PRIMARY KEY,
---        score INT
---          ); -->
-
-CREATE TABLE IF NOT EXISTS userbase (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      pseudo INT
-      );
+ Ce projet a été d'une grande aide pour  ma mise en pratique de nos compwthence acquise en java en mettant en plase la création de plusieur mini jeux . Ravi d'y avoir participé, Merci d'avoir consacré votre temps et votre attention à la conception du projet.

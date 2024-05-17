@@ -66,7 +66,6 @@ public static void main(String[] args)
         
         frame.add(valide);
         frame.add(nbj);
-        //frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 

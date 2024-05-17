@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.IOException;
 import java.sql.*;
 
 public class Hangman extends JFrame {
@@ -119,7 +118,7 @@ public class Hangman extends JFrame {
 
     private void initWords() {
         try {
-            mots = Files.readAllLines(Paths.get("./Game/Jeux_Java/file.txt/fileHangman.txt")).toArray(new String[0]);
+            mots = Files.readAllLines(Paths.get("./Game/Jeux_Java/file/fileHangman.txt")).toArray(new String[0]);
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erreur lors de la lecture du fichier de mots.");

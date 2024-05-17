@@ -76,7 +76,6 @@ public class MenuGame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     playSound("./Game/Jeux_Java/Ressources/Music/ChMenu.wav");
-
                     startSnake();
                 } catch (Exception ex) {
                     ex.printStackTrace();
