@@ -16,7 +16,7 @@ Tous ces jeux  utilisent une base de données MySQL pour stocker les données, y
  ### Jeux Realiser 
 
 
-#### Jeux du + ou - 
+### Jeux du + ou - 
 
 Le jeu du + ou - est un jeu de devinette où le joueur doit deviner un nombre secret choisi aléatoirement par l'ordinateur. 
 
