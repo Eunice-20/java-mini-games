@@ -22,7 +22,7 @@ public class Hangman extends JFrame {
     private String motSecret;
     private ArrayList<Character> lettresIncorrectes = new ArrayList<>();
     private StringBuilder motCache;
-    private int tentativesMax = 9;
+    private int tentativesMax = 10;
     private int tentativesRestantes;
     private int score;
     private JLabel motCacheLabel, lettresIncorrectesLabel, HangmanLabel, scoreLabel, statutLabel;
@@ -30,15 +30,16 @@ public class Hangman extends JFrame {
     private JButton guessButton, restartButton;
     private static JLabel hangmanImageLabel;
 
-    public static ImageIcon hangman1 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman1.png");
-    public static ImageIcon hangman2 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman2.png");
-    public static ImageIcon hangman3 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman3.png");
-    public static ImageIcon hangman4 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman4.png");
-    public static ImageIcon hangman5 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman5.png");
-    public static ImageIcon hangman6 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman6.png");
-    public static ImageIcon hangman7 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman7.png");
-    public static ImageIcon hangman8 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman8.png");
-    public static ImageIcon hangman9 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman9.png");
+    public static ImageIcon hangman1 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman1.jpg");
+    public static ImageIcon hangman2 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman2.jpg");
+    public static ImageIcon hangman3 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman3.jpg");
+    public static ImageIcon hangman4 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman4.jpg");
+    public static ImageIcon hangman5 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman5.jpg");
+    public static ImageIcon hangman6 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman6.jpg");
+    public static ImageIcon hangman7 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman7.jpg");
+    public static ImageIcon hangman8 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman8.jpg");
+    public static ImageIcon hangman9 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman9.jpg");
+    public static ImageIcon hangman10 = new ImageIcon("./Game/Jeux_Java/Ressources/hangman10.jpg");
 
 
     public static void main(String[] args) {
@@ -195,41 +196,56 @@ public class Hangman extends JFrame {
 
 
     public static void drawHangman(int l) {
+
+         ImageIcon hangmanIcon = null;
         switch (l) {
             case 0:
               
                 break;
             case 1:
-                hangmanImageLabel.setIcon(hangman9);
+            hangmanIcon = resizeImage(hangman10, 400, 100);
                 break;
             case 2:
-                hangmanImageLabel.setIcon(hangman8);
+            hangmanIcon = resizeImage(hangman9, 400, 100);
                 break;
             case 3:
-                hangmanImageLabel.setIcon(hangman7);
+            hangmanIcon = resizeImage(hangman8, 400, 100);
                 break;
             case 4:
-                hangmanImageLabel.setIcon(hangman6);
+            hangmanIcon = resizeImage(hangman7, 400, 100);
                 break;
             case 5:
-                hangmanImageLabel.setIcon(hangman5);
+            hangmanIcon = resizeImage(hangman6, 400, 100);
                 break;
             case 6:
-                hangmanImageLabel.setIcon(hangman4);
+            hangmanIcon = resizeImage(hangman5, 400, 100);
                 break;
             case 7:
-                hangmanImageLabel.setIcon(hangman3);
+            hangmanIcon = resizeImage(hangman4, 400, 100);
                 break;
             case 8:
-                hangmanImageLabel.setIcon(hangman2);
+            hangmanIcon = resizeImage(hangman3, 400, 100);
                 break;
             case 9:
-                hangmanImageLabel.setIcon(hangman1);
+            hangmanIcon = resizeImage(hangman2, 400, 100);
+                break;
+            case 10:
+            hangmanIcon = resizeImage(hangman1, 400, 100);
                 break;
             default:
                 break;
             }
-    }
+            if (hangmanIcon != null) {
+                hangmanImageLabel.setIcon(hangmanIcon);
+            }
+        }
+        
+        private static ImageIcon resizeImage(ImageIcon icon, int width, int height) {
+            Image img = icon.getImage();
+            Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            return new ImageIcon(resizedImg);
+        }
+    
     
     //            playSound("./Game/Jeux_Java/Ressources/Music/carte.wav");
 
